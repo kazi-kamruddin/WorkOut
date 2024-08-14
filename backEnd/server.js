@@ -3,11 +3,14 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+
 //route khujte ami kon file e jabo
-const workoutRoutes = require('./routes/workout.js');
+const workoutRoutes = require('./routes/workoutRoutes.js');
 
 //middleware
 //this will run for every request
+app.use(express.json());     //protita request er access pailam
+
 app.use((req,res,next) => {
     console.log(req.path, req.method);
     next();
@@ -15,7 +18,7 @@ app.use((req,res,next) => {
 
 //routes
 // app.get('/', (req,res) => {
-//     res.json({message: "server is ok"});
+//     res.json({message: "server is ok"});  
 // })
 app.use('/api/workouts', workoutRoutes);
 
