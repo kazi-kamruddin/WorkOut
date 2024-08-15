@@ -2,12 +2,17 @@ require('dotenv').config()
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 //route khujte ami kon file e jabo
 const workoutRoutes = require('./routes/workoutRoutes.js');
 
 //middleware
+app.use(cors({
+    origin: 'http://localhost:5173'  // Replace with your frontend URL
+}));
+
 //this will run for every request
 app.use(express.json());     //protita request er access pailam
 
